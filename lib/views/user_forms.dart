@@ -10,7 +10,7 @@ class UserForm extends StatefulWidget {
 
 class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
-
+  bool _isLoading = false;
   final Map<String, String> _formData = {};
 
   void _loadFormData(User user) {
@@ -37,11 +37,14 @@ class _UserFormState extends State<UserForm> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.save),
-              onPressed: () {
+              onPressed: () async {
                 final isValid = _form.currentState.validate();
                 if (isValid) {
+                  setState(() {
+                    _isLoading = true;
+                  });
                   _form.currentState.save();
-                  Provider.of<Users>(context, listen: false).put(
+                  await Provider.of<Users>(context, listen: false).put(
                     User(
                       id: _formData['id'],
                       name: _formData['name'],
@@ -49,47 +52,52 @@ class _UserFormState extends State<UserForm> {
                       avatarUrl: _formData['avatarUrl'],
                     ),
                   );
+                  setState(() {
+                    _isLoading = false;
+                  });
                   Navigator.of(context).pop();
                 }
               },
             ),
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.all(15),
-          child: Form(
-            key: _form,
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  initialValue: _formData['name'],
-                  decoration: InputDecoration(
-                    labelText: 'nome',
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: EdgeInsets.all(15),
+                child: Form(
+                  key: _form,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        initialValue: _formData['name'],
+                        decoration: InputDecoration(
+                          labelText: 'nome',
+                        ),
+                        //validator: (value) {
+                        //if (value == null || value.isEmpty) {
+                        //return 'Digite um nome valido';
+                        //}
+                        //},
+                        onSaved: (value) => _formData['name'] = value,
+                      ),
+                      TextFormField(
+                        initialValue: _formData['email'],
+                        decoration: InputDecoration(
+                          labelText: 'email',
+                        ),
+                        onSaved: (value) => _formData['email'] = value,
+                      ),
+                      TextFormField(
+                        initialValue: _formData['avatarUrl'],
+                        decoration: InputDecoration(
+                          labelText: 'Url do Avatar',
+                        ),
+                        onSaved: (value) => _formData['avatarUrl'] = value,
+                      ),
+                    ],
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Digite um nome valido';
-                    }
-                  },
-                  onSaved: (value) => _formData['name'] = value,
                 ),
-                TextFormField(
-                  initialValue: _formData['email'],
-                  decoration: InputDecoration(
-                    labelText: 'email',
-                  ),
-                  onSaved: (value) => _formData['email'] = value,
-                ),
-                TextFormField(
-                  initialValue: _formData['avatarUrl'],
-                  decoration: InputDecoration(
-                    labelText: 'Url do Avatar',
-                  ),
-                  onSaved: (value) => _formData['avatarUrl'] = value,
-                ),
-              ],
-            ),
-          ),
-        ));
+              ));
   }
 }
