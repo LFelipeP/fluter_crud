@@ -1,18 +1,14 @@
 import 'dart:convert';
 
-import 'package:fluter_crud/data/dummy_users.dart';
 import 'package:fluter_crud/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Users with ChangeNotifier {
   final String _baseUrl = 'https://app-armario.firebaseio.com/';
+  Map<String, User> _items = {};
 
-  final Map<String, User> _items = {...DUMMY_USERS};
-
-  Future<List<User>> all() async {
-    final _xau = await http.get("$_baseUrl/users/.json");
-    print(_xau.body);
+  List<User> get all {
     return [..._items.values];
   }
 
