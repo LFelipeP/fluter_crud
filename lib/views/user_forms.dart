@@ -23,6 +23,13 @@ class _UserFormState extends State<UserForm> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final User user = ModalRoute.of(context).settings.arguments;
+    _loadFormData(user);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(

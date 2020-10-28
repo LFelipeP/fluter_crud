@@ -10,7 +10,9 @@ class Users with ChangeNotifier {
 
   final Map<String, User> _items = {...DUMMY_USERS};
 
-  List<User> get all {
+  Future<List<User>> all() async {
+    final _xau = await http.get("$_baseUrl/users/.json");
+    print(_xau.body);
     return [..._items.values];
   }
 
