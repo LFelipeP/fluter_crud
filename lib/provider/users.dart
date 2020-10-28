@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Users with ChangeNotifier {
-  static const _baseUrl = 'https://app-armario.firebaseio.com/';
+  final String _baseUrl = 'https://app-armario.firebaseio.com/';
+
   final Map<String, User> _items = {...DUMMY_USERS};
 
   List<User> get all {
@@ -37,6 +38,7 @@ class Users with ChangeNotifier {
           'avatarUrl': user.avatarUrl,
         }),
       );
+
       _items.update(
         user.id,
         (_) => User(
