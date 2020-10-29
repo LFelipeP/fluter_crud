@@ -17,7 +17,6 @@ class Users with ChangeNotifier {
   }
 
   User byIndex(int i) {
-    getUser();
     return _items.elementAt(i);
   }
 
@@ -89,6 +88,7 @@ class Users with ChangeNotifier {
       await http.patch(
         "$_baseUrl/${user.id}.json",
         body: json.encode({
+          'id': user.id,
           'name': user.name,
           'email': user.email,
           'avatarUrl': user.avatarUrl,

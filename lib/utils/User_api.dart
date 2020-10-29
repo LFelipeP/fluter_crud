@@ -18,6 +18,7 @@ class UserApi {
       return [];
     } catch (error) {
       print(error);
+      return [];
     }
   }
 }
