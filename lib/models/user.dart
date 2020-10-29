@@ -13,6 +13,15 @@ class User {
     @required this.avatarUrl,
   });
 
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      name: json['name'],
+      avatarUrl: json['avatarUrl'],
+      email: json['email'],
+    );
+  }
+
   User.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
