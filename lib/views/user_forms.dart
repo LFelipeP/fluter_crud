@@ -30,16 +30,6 @@ class _UserFormState extends State<UserForm> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    Provider.of<Users>(context, listen: false).loadUser().then((_) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +44,7 @@ class _UserFormState extends State<UserForm> {
                   _isLoading = true;
                 });
                 _form.currentState.save();
-                await Provider.of<Users>(context, listen: false).addUser(
+                await Provider.of<Users>(context, listen: false).put(
                   User(
                     id: _formData['id'],
                     name: _formData['name'],

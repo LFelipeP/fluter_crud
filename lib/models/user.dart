@@ -13,23 +13,23 @@ class User {
     @required this.avatarUrl,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  /*factory User.fromJsogn(Map<String, dynamic> json) {
     return User(
       id: json['id'],
       name: json['name'],
       avatarUrl: json['avatarUrl'],
       email: json['email'],
     );
-  }
+  }*/
 
-  User.fromMap(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     avatarUrl = json['avatarUrl'];
     email = json['email'];
   }
 
-  Map<String, User> toMap() {
+  Map<String, User> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
