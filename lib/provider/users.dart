@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:convert' as convert;
 
 import 'package:fluter_crud/models/user.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class Users with ChangeNotifier {
     return _items.values.elementAt(i);
   }
 
-  /*static Future<List<User>> getUser() async {
+  /*==static Future<List<User>> getUser() async {
     try {
       final String _baseUrl = '${Constants.BASE_API_URL}/users';
       var response = await http.get(_baseUrl);
@@ -65,9 +64,11 @@ class Users with ChangeNotifier {
         ),
       );
     } else {
+      //final ids = new Random();
       final response = await http.post(
         "$_baseUrl/users.json",
         body: json.encode({
+          //'id': ids,
           'name': user.name,
           'email': user.email,
           'avatarUrl': user.avatarUrl,

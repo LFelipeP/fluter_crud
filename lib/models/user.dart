@@ -13,17 +13,18 @@ class User {
     @required this.avatarUrl,
   });
 
-  /*factory User.fromJsogn(Map<String, dynamic> json) {
+  factory User.fromJsogn(Map<String, dynamic> json, var mapUser, int i) {
+    print(json.keys.elementAt(i));
     return User(
-      id: json['id'],
-      name: json['name'],
-      avatarUrl: json['avatarUrl'],
-      email: json['email'],
+      id: json.keys.elementAt(i),
+      name: mapUser.values.elementAt(2),
+      avatarUrl: mapUser.values.elementAt(0),
+      email: mapUser.values.elementAt(1),
     );
-  }*/
+  }
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    //id = json['id'];
     name = json['name'];
     avatarUrl = json['avatarUrl'];
     email = json['email'];

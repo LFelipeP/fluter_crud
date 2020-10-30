@@ -5,18 +5,39 @@ import 'package:http/http.dart' as http;
 
 class UserApi {
   static Future<List<User>> getUser() async {
-    final String url = 'https://app-armario.firebaseio.com/';
+    final String url = 'https://app-armario.firebaseio.com/users.json';
     var response = await http.get(url);
+    print(response.body);
     String json = response.body;
-    List list = convert.json.decode(json);
-    final user = List<User>();
-
-    for (Map map in list) {
-      User c = User.fromJson(map);
-      user.add(c);
+    Map<String, dynamic> mapUsers = convert.json.decode(json);
+    print("Tudo");
+    print(mapUsers);
+    print("Parte que eu quero");
+    print(mapUsers.values);
+    final user = new List<User>();
+    print(mapUsers.length);
+    //User c;
+    //user.forEach((customer) => list[customer] = customer);
+    //print(list);
+    for (int i = 0; i < mapUsers.length; i++) {
+      print("Usuario $i");
+      var mapUser = mapUsers.values.elementAt(i);
+      print(mapUser.values.elementAt(1));
+      User d = new User.fromJsogn(mapUsers, mapUser, i);
+      user.add(d);
+      print("Esse é o d");
+      print(d);
+      print("Esse é o d atributo name");
+      print(d.name);
     }
+    //for (Map map in list) {
+    //User c = User.fromJsogn(map);
+    //user.add(c);
+    //}
 
     print(user);
+    print(user[0]);
+    print(user[0].name);
     return user;
   }
 }

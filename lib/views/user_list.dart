@@ -1,14 +1,13 @@
 import 'package:fluter_crud/components/user_tile.dart';
 import 'package:fluter_crud/models/user.dart';
-import 'package:fluter_crud/provider/users.dart';
+
 import 'package:fluter_crud/routes/app_routes.dart';
 import 'package:fluter_crud/utils/User_api.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
-  //Future<void> _refreshUsers(BuildContext context) {}
+  Future<void> _refreshUsers(BuildContext context) {}
   @override
   Widget build(BuildContext context) {
     //final Users usersData = Provider.of(context);
@@ -26,16 +25,21 @@ class UserList extends StatelessWidget {
           )
         ],
       ),
-      body: teste(),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshUsers(context),
+        child: teste(),
+      ),
     );
   }
 
   teste() {
     Future<List<User>> future = UserApi.getUser();
+    print("future");
+    print(future);
     return FutureBuilder(
       future: future,
       builder: (context, snapshot) {
-        if (!snapshot.hasError) {
+        if (snapshot.hasError) {
           print(snapshot.error);
           return Center(child: Text("Erro ao carregar banco de dados"));
         }
