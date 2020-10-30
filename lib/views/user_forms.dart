@@ -19,6 +19,9 @@ class _UserFormState extends State<UserForm> {
       _formData['email'] = user.email;
       _formData['name'] = user.name;
       _formData['avatarUrl'] = user.avatarUrl;
+      _formData['senha'] = user.senha;
+      _formData['validade'] = user.validade;
+      _formData['armario'] = user.armario;
     }
   }
 
@@ -50,6 +53,9 @@ class _UserFormState extends State<UserForm> {
                     name: _formData['name'],
                     email: _formData['email'],
                     avatarUrl: _formData['avatarUrl'],
+                    senha: _formData['senha'],
+                    validade: _formData['validade'],
+                    armario: _formData['armario'],
                   ),
                 );
                 setState(() {
@@ -89,6 +95,33 @@ class _UserFormState extends State<UserForm> {
                             labelText: 'email',
                           ),
                           onSaved: (value) => _formData['email'] = value,
+                        ),
+                        TextFormField(
+                          initialValue: _formData['senha'],
+                          decoration: InputDecoration(
+                            labelText: 'Senha',
+                            hintText: 'Apenas numeros',
+                          ),
+                          keyboardType: TextInputType.number,
+                          onSaved: (value) => _formData['senha'] = value,
+                        ),
+                        TextFormField(
+                          initialValue: _formData['validade'],
+                          decoration: InputDecoration(
+                            labelText: 'Validade',
+                            hintText: 'Digite em quatidade de dias',
+                          ),
+                          keyboardType: TextInputType.number,
+                          onSaved: (value) => _formData['validade'] = value,
+                        ),
+                        TextFormField(
+                          initialValue: _formData['armario'],
+                          decoration: InputDecoration(
+                            labelText: 'Armario',
+                            hintText: 'Separe com " , " caso for mais de um',
+                          ),
+                          keyboardType: TextInputType.number,
+                          onSaved: (value) => _formData['armario'] = value,
                         ),
                         TextFormField(
                           initialValue: _formData['avatarUrl'],

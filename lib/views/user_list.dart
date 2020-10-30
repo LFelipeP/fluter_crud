@@ -7,7 +7,12 @@ import 'package:fluter_crud/utils/User_api.dart';
 import 'package:flutter/material.dart';
 
 class UserList extends StatelessWidget {
-  Future<void> _refreshUsers(BuildContext context) {}
+  Future<void> _refreshUsers(BuildContext context) {
+    return Navigator.of(context).pushNamed(
+      AppRoutes.HOME,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     //final Users usersData = Provider.of(context);

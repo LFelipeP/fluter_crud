@@ -20,23 +20,6 @@ class Users with ChangeNotifier {
     return _items.values.elementAt(i);
   }
 
-  /*==static Future<List<User>> getUser() async {
-    try {
-      final String _baseUrl = '${Constants.BASE_API_URL}/users';
-      var response = await http.get(_baseUrl);
-      String json = response.body;
-      List list = convert.json.decode(json);
-      final user = List<User>();
-      for (Map map in list) {
-        User c = User.fromJson(map);
-        user.add(c);
-      }
-      return [];
-    } catch (error) {
-      print(error);
-    }
-  }*/
-
   Future<void> put(User user) async {
     if (user == null) {
       return;
@@ -51,6 +34,9 @@ class Users with ChangeNotifier {
           'name': user.name,
           'email': user.email,
           'avatarUrl': user.avatarUrl,
+          'senha': user.senha,
+          'armario': user.armario,
+          'validade': user.validade,
         }),
       );
 
@@ -58,6 +44,9 @@ class Users with ChangeNotifier {
         user.id,
         (_) => User(
           id: user.id,
+          senha: user.senha,
+          validade: user.validade,
+          armario: user.armario,
           name: user.name,
           email: user.email,
           avatarUrl: user.avatarUrl,
@@ -72,6 +61,9 @@ class Users with ChangeNotifier {
           'name': user.name,
           'email': user.email,
           'avatarUrl': user.avatarUrl,
+          'senha': user.senha,
+          'armario': user.armario,
+          'validade': user.validade,
         }),
       );
       final id = json.decode(response.body)['name'];
@@ -80,6 +72,9 @@ class Users with ChangeNotifier {
         id,
         () => User(
           id: id,
+          senha: user.senha,
+          validade: user.validade,
+          armario: user.armario,
           name: user.name,
           email: user.email,
           avatarUrl: user.avatarUrl,

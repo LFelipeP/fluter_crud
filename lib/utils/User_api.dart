@@ -16,9 +16,7 @@ class UserApi {
     print(mapUsers.values);
     final user = new List<User>();
     print(mapUsers.length);
-    //User c;
-    //user.forEach((customer) => list[customer] = customer);
-    //print(list);
+
     for (int i = 0; i < mapUsers.length; i++) {
       print("Usuario $i");
       var mapUser = mapUsers.values.elementAt(i);
@@ -30,14 +28,6 @@ class UserApi {
       print("Esse é o d atributo name");
       print(d.name);
     }
-    //for (Map map in list) {
-    //User c = User.fromJsogn(map);
-    //user.add(c);
-    //}
-
-    print(user);
-    print(user[0]);
-    print(user[0].name);
     return user;
   }
 }

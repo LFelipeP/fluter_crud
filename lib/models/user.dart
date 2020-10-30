@@ -5,9 +5,15 @@ class User {
   String name;
   String email;
   String avatarUrl;
+  String senha;
+  String validade;
+  String armario;
 
   User({
     this.id,
+    @required this.senha,
+    @required this.validade,
+    @required this.armario,
     @required this.name,
     @required this.email,
     @required this.avatarUrl,
@@ -17,25 +23,12 @@ class User {
     print(json.keys.elementAt(i));
     return User(
       id: json.keys.elementAt(i),
-      name: mapUser.values.elementAt(2),
-      avatarUrl: mapUser.values.elementAt(0),
-      email: mapUser.values.elementAt(1),
+      name: mapUser.values.elementAt(3),
+      avatarUrl: mapUser.values.elementAt(1),
+      email: mapUser.values.elementAt(2),
+      validade: mapUser.values.elementAt(5),
+      armario: mapUser.values.elementAt(0),
+      senha: mapUser.values.elementAt(4),
     );
-  }
-
-  User.fromJson(Map<String, dynamic> json) {
-    //id = json['id'];
-    name = json['name'];
-    avatarUrl = json['avatarUrl'];
-    email = json['email'];
-  }
-
-  Map<String, User> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['avatarUrl'] = this.avatarUrl;
-    return data;
   }
 }
