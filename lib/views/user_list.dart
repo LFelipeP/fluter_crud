@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class UserList extends StatelessWidget {
   Future<void> _refreshUsers(BuildContext context) {
-    return Navigator.of(context).pushNamed(
+    return Navigator.of(context).popAndPushNamed(
       AppRoutes.HOME,
     );
   }
