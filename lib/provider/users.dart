@@ -25,10 +25,10 @@ class Users with ChangeNotifier {
       return;
     }
 
-    if (user.id != null &&
-        user.id.trim().isNotEmpty &&
-        _items.containsKey(user.id)) {
-      await http.patch(
+    if (user.id != null) {
+      print("id aqui:");
+      print(user.id);
+      await http.put(
         "$_baseUrl/users/${user.id}.json",
         body: json.encode({
           'name': user.name,
